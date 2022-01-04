@@ -7,7 +7,7 @@ setInterval(async () => {
     // let buy = 0, sell = 0;
     // const result = await api.depth(symbol);
 
-    // if (result.bids) {
+    // if (result.bids && result.bids.length) {
     //     console.log(`Ordem de compra - Quem quer comprar ${result.bids[0][0]}`);
     //     buy = parseFloat(result.bids[0][0]);
     // }
@@ -18,10 +18,9 @@ setInterval(async () => {
         console.log(await api.accountInfo());
     // }
 
-
-    // if (sell < 0.080940) {
+    // if (sell < 300) {
     //     console.log('Hora de comprar');
-    // } else if (buy > 0.080970) {
+    // } else if (buy > 500) {
     //     console.log('Hora de vender');
     // } else {
     //     console.log('Aguardando mercado');
