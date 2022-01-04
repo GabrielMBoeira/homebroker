@@ -37,6 +37,16 @@ async function accountInfo(){
    return privateCall('/v3/account');
 }
 
+async function newOrder(symbol, quantity, price, side = 'BUY', type = 'MARKET') {
+    const data = { symbol, side, type, quantity };
+ 
+    if (price) data.price = parseInt(price);
+    if (type === 'LIMIT') data.timeInForce = 'GTC';
+ 
+    return privateCall('/v3/order', data, 'POST');
+}
+ 
+
 async function publicCall(path, data, method = 'GET') {
     try {
         const qs = data ? `?${querystring .stringify(data)}` : '';
@@ -65,4 +75,4 @@ async function exchangeInfo(symbol) {
    return symbol ? result.symbols.find(s => s.symbol === symbol) : result.symbols;
 }
 
-module.exports = { time, depth, exchangeInfo, accountInfo }
+module.exports = { time, depth, exchangeInfo, accountInfo, newOrder }
